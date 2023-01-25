@@ -61,9 +61,7 @@ const categoryData = reactive({
 
 onMounted(() => {
     categoryData.id = useRoute().params.id
-    categoryData.category = props.categories.find(c => c.id == categoryData.id)
-     
-
+    categoryData.category = props.categories.find(c => c.id == categoryData.id)  
 })
 
 const editCategory = async () => {

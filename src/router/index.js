@@ -39,7 +39,7 @@ const routes = [
       },
       {
         path: '/admin/product',
-        name: 'Product',
+        name: 'AdminProduct',
         component: Product
       },
         // add product

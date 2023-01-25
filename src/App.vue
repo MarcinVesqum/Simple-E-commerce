@@ -5,8 +5,8 @@ import axios from 'axios'
 
 
 const baseURL = 'https://limitless-lake-55070.herokuapp.com/'
-const categories = ref([])
-const products = ref([])
+const categories = ref(null)
+const products = ref(null)
 
 const fetchData = async () => {
     // api call to get all the categories
