@@ -35,8 +35,16 @@ onMounted(() => {
         v-if="products && categories"
         :baseURL="baseURL"
         :categories="categories"
-        :products="products"
-        />
+        :products="products" 
+        @fetchData="fetchData" 
+        v-slot="{ Component }"
+        >
+        <suspense>
+            <component
+            :is="Component" 
+            />
+        </suspense>
+    </router-view>
     </div>
 </template>
 
