@@ -1,10 +1,10 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import AddCategory from '../views/Category/AddCategory'
-import Category from '../views/Category/Category'
-import Product from '../views/Product/Product'
-import Admin from "../views/Admin";
-import AddProduct from "../views/Product/AddProduct";
+import AddCategory from '../views/Category/AddCategory.vue'
+import Category from '../views/Category/Category.vue'
+import Product from '../views/Product/Product.vue'
+import Admin from "../views/Admin.vue";
+import AddProduct from "../views/Product/AddProduct.vue";
 
 
 const routes = [
