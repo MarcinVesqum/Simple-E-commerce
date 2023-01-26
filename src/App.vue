@@ -1,5 +1,6 @@
 <script setup>
 import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
@@ -46,8 +47,20 @@ onMounted(() => {
         </suspense>
     </router-view>
     </div>
+    <Footer/>
 </template>
 
-<style scoped>
-
+<style>
+*,
+*::after,
+*::before{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    outline: none;
+}
+#app {
+    width: 100%;
+}
 </style>
