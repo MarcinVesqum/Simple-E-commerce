@@ -1,10 +1,8 @@
 
 <template>
     <div class="container mx-auto px-4 max-w-screen-lg ">
-        <div class="flex flex-col ">
-            <div class="w-100 text-center">
-                <h4>Add New Product</h4>
-            </div>
+        <div class="w-100 text-center mt-20  font-extrabold">
+            <h4 class="sm:text-3xl text-2xl mb-4 text-gray-900">Add New Product</h4>
         </div>
         <div class="columns-1">
             <div class="columns-3"></div>

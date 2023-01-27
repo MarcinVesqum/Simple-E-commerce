@@ -2,7 +2,7 @@
     <div class="container px-5 py-24 mx-auto flex flex-col">
         <div class="flex flex-col">
             <div class="w-100 text-center">
-                <h4 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Add New Category</h4>
+                <h4 class="sm:text-3xl text-2xl mb-4 text-gray-900 font-extrabold">Add New Category</h4>
             </div>
         </div>
         <div class="columns-1">

@@ -4,6 +4,7 @@ import AddCategory from '../views/Category/AddCategory.vue'
 import Category from '../views/Category/Category.vue'
 import EditCategory from '../views/Category/EditCategory.vue'
 import Product from '../views/Product/Product.vue'
+import ProductDetail from '../views/Product/ProductDetail.vue'
 import Admin from "../views/Admin.vue";
 import AddProduct from "../views/Product/AddProduct.vue";
 import EditProduct from "../views/Product/EditProduct.vue";
@@ -11,9 +12,14 @@ import EditProduct from "../views/Product/EditProduct.vue";
 
 const routes = [
     { 
-        path: '',
+        path: '/',
         name: 'home',
         component: HomeView
+    },
+    { 
+      path: '/product-detail/:id',
+      name: 'ProductDetail',
+      component: ProductDetail
     },
     {
         path: '/admin/category/add',
