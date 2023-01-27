@@ -68,9 +68,6 @@ const props = defineProps({
 
 const emit = defineEmits(['fetchData'])
 
-
-
-
 const editProduct = async () => {
     console.log(productData.product);
     await axios.post(`${props.baseURL}product/update/${productData.id }`, productData.product)
