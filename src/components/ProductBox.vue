@@ -18,6 +18,7 @@
             Edit
           </button> 
         </router-link>
+        <button @click="addTo"></button>
         </div>
       </div>
 </template>

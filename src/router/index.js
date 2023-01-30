@@ -12,6 +12,7 @@ import AddProduct from '../views/Product/AddProduct.vue'
 import ProductDetail from '../views/Product/ProductDetail.vue'
 import WishList from '../views/Product/WishList.vue'
 import EditProduct from '../views/Product/EditProduct.vue'
+import Cart from '../views/Cart.vue'
 
 
 const routes = [
@@ -87,6 +88,12 @@ const routes = [
         name: 'Signin',
         component: Signin
       },
+      // Shoping CART
+      {
+        path: '/cart',
+        name: 'ShopingCart',
+        component: Cart
+      }
       
 ]
 
