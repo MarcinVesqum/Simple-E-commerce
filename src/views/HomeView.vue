@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="flex flex-wrap">
-                    <div v-for="index in product_size" :key="index" class="flex md:columns-6 xl:columns-4 columns-12 pt-3 justify-around">
+                    <div v-for="index in product_size" :key="index" class="flex md:columns-6 xl:columns-2 columns-12 pt-3 justify-around">
                         <ProductBox :product="products[index-1]">
                         </ProductBox>
                     </div>

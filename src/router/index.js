@@ -1,12 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import Admin from "../views/Admin.vue"
+import Signup from "../views/Signup.vue"
+import Signin from "../views/Signin.vue"
+import ListProducts from "../views/Category/ListProducts.vue";
 import AddCategory from '../views/Category/AddCategory.vue'
 import Category from '../views/Category/Category.vue'
 import EditCategory from '../views/Category/EditCategory.vue'
 import Product from '../views/Product/Product.vue'
-import ProductDetail from '../views/Product/ProductDetail.vue'
-import Admin from "../views/Admin.vue";
 import AddProduct from "../views/Product/AddProduct.vue";
+import ProductDetail from '../views/Product/ProductDetail.vue'
 import EditProduct from "../views/Product/EditProduct.vue";
 
 
@@ -16,10 +19,11 @@ const routes = [
         name: 'home',
         component: HomeView
     },
-    { 
-      path: '/product-detail/:id',
-      name: 'ProductDetail',
-      component: ProductDetail
+    // category detail page
+    {
+      path: '/category/show/:id',
+      name: 'ListProducts',
+      component: ListProducts
     },
     {
         path: '/admin/category/add',
@@ -59,7 +63,24 @@ const routes = [
         name: 'EditProduct',
         component: EditProduct,
         props: true
-      }
+      },
+      // show the product details
+      { 
+        path: '/product-detail/:id',
+        name: 'ProductDetail',
+        component: ProductDetail
+      },
+      // Singup
+      {
+        path: '/signup',
+        name: 'Signup',
+        component: Signup
+      },
+      {
+        path: '/signin',
+        name: 'Signin',
+        component: Signin
+      },
 ]
 
 const router = createRouter({
