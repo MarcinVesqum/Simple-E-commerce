@@ -60,7 +60,7 @@ const signup = async () => {
         console.log(user);
         await axios.post(`${props.baseURL}user/signup`, user)
         .then(() => {
-            router.replace('/')
+            router.replace('/signin')
             swal.fire({
                 icon: 'success',
                 text: 'User signup successful, please login',
