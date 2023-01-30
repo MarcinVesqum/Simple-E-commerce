@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import Admin from "../views/Admin.vue";
+import Admin from "../views/Admin.vue"
+import Signup from "../views/Signup.vue"
+import Signin from "../views/Signin.vue"
 import ListProducts from "../views/Category/ListProducts.vue";
 import AddCategory from '../views/Category/AddCategory.vue'
 import Category from '../views/Category/Category.vue'
@@ -67,6 +69,17 @@ const routes = [
         path: '/product-detail/:id',
         name: 'ProductDetail',
         component: ProductDetail
+      },
+      // Singup
+      {
+        path: '/signup',
+        name: 'Signup',
+        component: Signup
+      },
+      {
+        path: '/signin',
+        name: 'Signin',
+        component: Signin
       },
 ]
 
