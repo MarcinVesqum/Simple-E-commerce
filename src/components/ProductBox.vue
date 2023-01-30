@@ -1,5 +1,5 @@
 <template>
-    <div class="md:w-full p-4 m-4">
+    <div class=" w-full lg:w-[300px] p-4 m-4">
         <a class="block relative h-48 rounded overflow-hidden max-w-lg">
           <img alt="ecommerce" class="object-cover object-center w-full h-full block" :src="product.imageURL">
         </a>

@@ -41,8 +41,9 @@ const signin = async () => {
     password: userData.password
   }
   await axios.post(`${props.baseURL}user/signIn`, body)
-  .then(() => {
+  .then((res) => {
     router.replace('/')
+    localStorage.setItem('token', res.data.token)
     swal.fire({
         icon: 'success',
         text: 'Login successful',
