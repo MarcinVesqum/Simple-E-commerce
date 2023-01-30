@@ -10,14 +10,27 @@
       <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="click" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">Accounts<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
       <!-- Dropdown menu -->
       <div id="dropdownHover" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
-          <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
+          <ul v-if="!token" class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
             <li>
               <router-link :to="{ name: 'Signup'}" class="block px-4 py-2 hover:bg-gray-100 ">Sign up</router-link>
             </li>
             <li>
               <router-link :to="{ name: 'Signin'}" class="block px-4 py-2 hover:bg-gray-100">Sign in</router-link>
             </li>
+
           </ul>
+          <ul v-else class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
+            <li>
+              <router-link :to="{ name: 'Admin'}" class="block px-4 py-2 hover:bg-gray-100">Admin</router-link>
+            </li>
+            <li>
+              <router-link :to="{ name: 'WishList'}" class="block px-4 py-2 hover:bg-gray-100">WishList</router-link>
+            </li>
+            <li>
+              <router-link @click="signout" :to="{ name: 'home'}" class="block px-4 py-2 hover:bg-gray-100">Sing Out</router-link>
+            </li>
+          </ul>
+          
       </div>
     </div>
    
@@ -57,9 +70,7 @@
           <li>
             <router-link :to="{ name: 'Category'}" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Category</router-link>
           </li>
-          <li>
-            <router-link :to="{ name: 'Admin'}" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Admin</router-link>
-          </li>
+
           
         </ul>
       </div>
@@ -68,19 +79,38 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref, inject } from 'vue'
 import { 
     initAccordions, 
     initDropdowns, 
     initTabs,
     initCollapses} from 'flowbite'
 
+const swal = inject('$swal')
+
+let token = ref(null)
+
+// signout
+const signout = () => {
+  localStorage.removeItem('token')
+  token.value = null
+  swal.fire({
+    icon: 'success',
+    text: 'Logged you out. Visit Again',
+    closeOnClickOutside: false,
+
+  })
+
+}
+
 // initialize components based on data attribute selectors
 onMounted(() => {
+    token.value = localStorage.getItem('token')
     initAccordions();
     initCollapses();
     initDropdowns();
     initTabs();
+
 })
 </script>
 

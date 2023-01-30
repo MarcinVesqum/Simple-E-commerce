@@ -55,11 +55,9 @@
             </div>
             <div class="flex">
               <span class="title-font font-medium text-2xl text-gray-900">{{ product.price }} zł</span>
-              <button @click="addItem" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Button</button>
-              <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-                </svg>
+              <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Button</button>
+              <button @click="addToWishList" class="rounded-full w-40 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+                {{ wishListText }}
               </button>
             </div>
           </div>
@@ -69,29 +67,68 @@
 
 <script setup>
 import axios from 'axios'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, inject } from 'vue'
 import { useRoute } from 'vue-router'
-const product = ref({})
-const category = ref({})
-const id = ref(null)
+
+const swal = inject('$swal')
+
+// const porductDetailsData = reactive({
+//   id: null,
+//   token: null,
+//   product: {},
+//   category: {},
+//   wishListText: 'Add to wishlist'
+// })
+const id = ref(null),
+  token = ref(null),
+  product = ref({}),
+  category = ref({}),
+  wishListText = ref('Add to wishlist')
 
 const props = defineProps({
     products: Array,
     categories: Array,
-    baseURL: String
+    baseURL: String,
 })
+
+const addToWishList = () => {
+  if (!token.value) {
+    // user is not logged in
+    swal.fire({
+      icon: 'error',
+      text: 'please login to add item in wishlist',
+    })
+    return 
+  }
+  // add item to wishlist
+  axios.post(`${props.baseURL}wishlist/add?token=${token.value}`, {
+    id: product.value.id
+  })
+    .then((res) => {
+      if (res.status == 201) {
+        wishListText.value = 'Added to wishlist'
+        swal.fire({
+          icon: 'success',
+          text: 'Added to wishlist',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+      
+    })
+    .catch(error => {
+      console.log('error: ' + error)
+    })
+}
 
 onMounted(() => {
   id.value = useRoute().params.id
   product.value = props.products.find(product => product.id == id.value) 
   category.value = props.categories.find(category => category.id == product.value.categoryId) 
+
+  token.value = localStorage.getItem('token')
+  console.log(token.value);
 })
-
-
-
-const addItem = () => {
-
-}
 </script>
 
 <style lang="scss" scoped>
