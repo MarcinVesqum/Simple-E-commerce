@@ -15,21 +15,21 @@ You will need to have the following software installed on your machine:
 ### Installing
 
 1.Clone the repository to your local machine
-
+```
 $ https://github.com/MarcinVesqum/Simple-E-commerce.git
-
+```
 2.Navigate to the project directory
-
+```
 $ cd simple-e-commerce-with-api
-
+```
 3.Install the necessary dependencies
-
+```
 $ npm install
-
+```
 4.Start the development server
-
+```
 $ npm run serve
-
+```
 
 The website should now be running on http://localhost:8080.
 
