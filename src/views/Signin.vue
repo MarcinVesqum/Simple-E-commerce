@@ -30,6 +30,7 @@ const props = defineProps({
     baseURL: String
 })
 
+const emit = defineEmits('fetchData')
 const userData = reactive({
     email: '',
     password: ''
@@ -50,6 +51,8 @@ const signin = async () => {
         showConfirmButton: false,
         timer: 1500
     })
+    emit('fetchData')
+    router.push({ name: 'home'})
   }).catch((err) => {
     console.log('error: ' + err.message)
     swal.fire({

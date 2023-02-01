@@ -37,7 +37,7 @@
         <router-link :to="{ name: 'ShopingCart'}">
           <button type="button" class="bg-transparent  focus:outline-none relative">
             <svg aria-hidden="true" class="w-8 h-8 mr-2 -ml-1 hover:h-9 hover:w-9 position duration-500 ease-in-out" fill="black" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path></svg>
-            <span class="absolute -top-1 text-white bg-blue-500 w-5 h-5 rounded-full">1</span>
+            <span class="absolute -top-1 text-white bg-blue-500 w-5 h-5 rounded-full">{{ cartCount }}</span>
           </button>
         </router-link>
         
@@ -97,6 +97,16 @@ import {
 
 const swal = inject('$swal')
 
+const props = defineProps({
+  cartCount: Number
+})
+
+const emit = defineEmits('resetCartCount')
+
+const resetCartCount = () => {
+  emit('resetCartCount')
+}
+
 let token = ref(null)
 
 // signout
@@ -107,9 +117,8 @@ const signout = () => {
     icon: 'success',
     text: 'Logged you out. Visit Again',
     closeOnClickOutside: false,
-
   })
-
+  emit('resetCartCount')
 }
 
 // initialize components based on data attribute selectors

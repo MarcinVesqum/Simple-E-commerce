@@ -2,7 +2,7 @@
     <div class="container px-5 py-24 mx-auto">
         <h3 class="pt-3 text-center">Your WishList</h3>
             <div class="flex flex-wrap -m-4 justify-center">
-              <div v-for="product of wishData.products" :key="product.id" class="flex flex-wrap -m-4">
+              <div v-for="product of wishData.products" :key="product.id" class="flex flex-wrap -m-4 m-2">
     
                 <ProductBox :product="product"/>
               </div>
@@ -33,6 +33,10 @@ const fetchWishList = () => {
         console.log('error', err)
     })
 }
+
+// const deleteItemWishlist = (itemId) => {
+//     axios.delete(`${props.baseURL}wishlist/`)
+// }
 
 onMounted(() => {
     wishData.token = localStorage.getItem('token')

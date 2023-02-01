@@ -8,6 +8,8 @@ import axios from 'axios'
 const baseURL = 'https://limitless-lake-55070.herokuapp.com/'
 const categories = ref(null)
 const products = ref(null)
+const token = ref(null)
+const cartCount = ref(0)
 
 const fetchData = async () => {
     // api call to get all the categories
@@ -22,21 +24,35 @@ const fetchData = async () => {
     .then(res => {
         products.value = res.data
     }).catch((err) => { throw err })
+    // fetch cart item if token is present i. e logged in
+    if (token.value) {
+        axios.get(`${baseURL}cart/?token=${token.value}`)
+        .then((res) => {
+            const result = res.data
+            cartCount.value = result.cartItems.length
+            console.log(cartCount.value);
+        }).catch((err) => console.log('err', err))
+    }
+}
+
+const resetCartCount = () => {
+    cartCount.value = 0
 }
 
 onMounted(() => {
+    token.value = localStorage.getItem("token")
     fetchData();
 })
 </script>
 
 <template>
-    <Navbar/>
-    <div class="text-gray-600 body-font">
+    <Navbar :cartCount="cartCount" :resetCartCount="resetCartCount"/>
+    <div class="text-gray-600 body-font flex justify-center items-center ">
         <router-view
         v-if="products && categories"
         :baseURL="baseURL"
         :categories="categories"
-        :products="products" 
+        :products="products"
         @fetchData="fetchData" 
         v-slot="{ Component }"
         >
