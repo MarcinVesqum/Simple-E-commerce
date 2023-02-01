@@ -5,11 +5,11 @@
         </div>
 
         <!-- loop over the cart items and display -->
-        <div class="columns-1 flex justify-center m-4">
+        <div class="columns-1 flex flex-col justify-center items-center m-4">
             <div 
             v-for="cartItem in cartItems"
             :key="cartItem.id"
-            class="flex flex-col justify-center items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100">
+            class="flex flex-col justify-center m-2 bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100">
     
                 <img 
                 :src="cartItem.product.imageURL" 
